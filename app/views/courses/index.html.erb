@@ -25,3 +25,29 @@
     <%= f.submit 'Create' %>
   </div>
 <% end %>
+
+<table style="width: 1000px">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+      <th>Timezone (utc + hours)</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <div style="border-top: 50px solid transparent">
+      <% @courses.each do |course| %>
+        <tr>
+          <td><%= link_to course.name, course_path(course) %></td>
+          <td><%= course.start_date %></td>
+          <td><%= course.end_date %></td>
+          <td>+<%= course.timezone %> hrs</td>
+          <td><%= course.description %></td>
+        </tr>
+      <% end %>
+    </div>
+  </tbody>
+</table>
