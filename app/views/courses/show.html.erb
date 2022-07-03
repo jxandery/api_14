@@ -1,0 +1,81 @@
+<h3>Course</h3>
+
+<%= @course.name %></br>
+<%= @course.start_date %></br>
+<%= @course.end_date %></br>
+<%= @course.timezone %></br>
+<%= @course.description %></br>
+
+<h5>Create Users</h5>
+<%= form_for(@user) do |f| %>
+  <div>
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name, size: '20' %>
+  </div>
+  <div>
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name, size: '20' %>
+  </div>
+  <div>
+    <%= f.label :email %>
+    <%= f.text_field :email, size: '20' %>
+  </div>
+  <div>
+    <%= f.submit 'Create User' %>
+  </div>
+<% end %>
+
+<h5>Enrolled Users</h5>
+<table style="width: 1000px">
+  <thead>
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <div style="border-top: 50px solid transparent">
+      <% @course_users.each do |user| %>
+        <tr>
+          <td><%= user.first_name %></td>
+          <td><%= user.last_name %></td>
+          <td><%= user.email %></td>
+        </tr>
+      <% end %>
+    </div>
+  </tbody>
+</table>
+
+
+<h5>Add Users to Course</h5>
+<table style="width: 1000px">
+  <thead>
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <div style="border-top: 50px solid transparent">
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.first_name %></td>
+          <td><%= user.last_name %></td>
+          <td><%= user.email %></td>
+          <td>
+            <%= form_for(@course_user) do |f| %>
+              <%= f.hidden_field :course_id, value: @course.id %>
+              <%= f.hidden_field :user_id, value: user.id %>
+              <%= f.submit 'Add to course' %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </div>
+  </tbody>
+</table>
