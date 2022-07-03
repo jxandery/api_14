@@ -1,0 +1,27 @@
+<h3>Courses</h3>
+
+<%= form_for(@course) do |f| %>
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name, size: '20', placeholder: 'Name' %>
+  </div>
+  <div>
+    <%= f.label :start_date %>
+    <%= f.date_field :start_date %>
+  </div>
+  <div>
+    <%= f.label :end_date %>
+    <%= f.date_field :end_date %>
+  </div>
+  <div>
+    <%= f.label 'Time Zone (# of hours + UTC)' %>
+    <%= f.number_field :timezone, step: 1 %>
+  </div>
+  <div>
+    <%= f.label :description %>
+    <%= f.text_field :description, size: '20' %>
+  </div>
+  <div>
+    <%= f.submit 'Create' %>
+  </div>
+<% end %>
